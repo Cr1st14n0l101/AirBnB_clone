@@ -26,7 +26,7 @@ class BaseModel:
 
     def __str__(self):
         """Return a string that represent the objects class"""
-        return "[{}] ({}) {}".format(BaseModel.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """Updates the public instance attribute updated_at with the current datetime"""
@@ -41,7 +41,7 @@ class BaseModel:
                 new_dict[key] = value.isoformat("T")
             else:
                 new_dict[key] = value
-        new_dict['__class__'] = BaseModel.__name__
+        new_dict['__class__'] = self.__class__.__name__
         return new_dict
 
 
