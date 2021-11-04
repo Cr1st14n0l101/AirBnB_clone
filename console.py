@@ -61,6 +61,24 @@ class HBNBCommand(cmd.Cmd):
             except Exception:
                 print("** class doesn't exist **")
 
+    def do_all(self, line):
+        split_line = line.split()
+        if len(split_line) == 0:
+            print("** class name missing **")
+        elif len(split_line) > 0:
+            try:
+                eval("{}()".format(split_line[0]))
+                models.storage.reload()
+                dictionary_isntance = models.storage.all()
+                new_list = []
+                for key, value in dictionary_isntance.items():
+                    splited = key.split('.')
+                    if splited[0] == split_line[0]:
+                        new_list.append(str(value))
+                print(new_list)
+            except Exception:
+                print("** class doesn't exist **")
+
     def do_quit(self, line):
         """Command to exit from the console\n"""
         return True
