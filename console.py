@@ -12,10 +12,10 @@ from models.place import Place
 from models.amenity import Amenity
 
 
-
 class HBNBCommand(cmd.Cmd):
     """class HBNBCommand for the console"""
     prompt = '(hbnb) '
+
     def do_create(self, line):
         """Create an object"""
         if line == "":
@@ -42,12 +42,12 @@ class HBNBCommand(cmd.Cmd):
                     dictionary_isntance = models.storage.all()
                     for key, value in dictionary_isntance.items():
                         splited = key.split('.')
-                        if split_line[1] == splited[1] and splited[0] == split_line[0]:
+                        if (split_line[1] == splited[1] and
+                                splited[0] == split_line[0]):
                             return print(value)
                     print("** no instance found **")
             except Exception:
                 print("** class doesn't exist **")
-
 
     def do_destroy(self, line):
         """Delete an object"""
@@ -63,7 +63,8 @@ class HBNBCommand(cmd.Cmd):
                     dictionary_isntance = models.storage.all()
                     for key, value in dictionary_isntance.items():
                         splited = key.split('.')
-                        if split_line[1] == splited[1] and splited[0] == split_line[0]:
+                        if (split_line[1] == splited[1] and
+                                splited[0] == split_line[0]):
                             del dictionary_isntance[key]
                             models.storage.save()
                             return
@@ -109,11 +110,12 @@ class HBNBCommand(cmd.Cmd):
                     dictionary_isntance = models.storage.all()
                     for key, value in dictionary_isntance.items():
                         splited = key.split('.')
-                        if split_line[1] == splited[1] and splited[0] == split_line[0]:
+                        if (split_line[1] == splited[1]
+                                and splited[0] == split_line[0]):
                             key_dictionary = key
                             copy_object = value
                             flag = True
-                    if flag == False:
+                    if flag is False:
                         print("** no instance found **")
                     elif len(split_line) < 3:
                         print("** attribute name missing **")
@@ -148,7 +150,7 @@ class HBNBCommand(cmd.Cmd):
         i = 0
 
         while len(line) > i:
-            if line[i] == '"' or flag == True:
+            if line[i] == '"' or flag is True:
                 flag = True
                 result_string += line[i + 1]
                 if line[i + 1] == '"':
@@ -194,7 +196,8 @@ class HBNBCommand(cmd.Cmd):
                 if HBNBCommand.validate_bracket(self, line):
                     attr = HBNBCommand.group_word(self, new_list[1])
                     value = HBNBCommand.group_word(self, new_list[2])
-                    string_to_destroy = name_class + " " + id_instance + " " + attr + " " + value
+                    string_to_destroy = (name_class + " " + id_instance +
+                                         " " + attr + " " + value)
                     HBNBCommand.do_update(self, string_to_destroy)
                 else:
                     new_dict = line.split('{')
