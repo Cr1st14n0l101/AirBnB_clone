@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module for class HBNBCommand and set the console"""
 import cmd
+import json
 import models
 from models.base_model import BaseModel
 from models.user import User
@@ -190,11 +191,22 @@ class HBNBCommand(cmd.Cmd):
             elif len(new_list) < 3:
                 print("** value missing **")
             else:
-                attr = HBNBCommand.group_word(self, new_list[1])
-                value = HBNBCommand.group_word(self, new_list[2])
-                string_to_destroy = name_class + " " + id_instance + " " + attr + " " + value
-                HBNBCommand.do_update(self, string_to_destroy)
-
+                if HBNBCommand.validate_bracket(self, line):
+                    attr = HBNBCommand.group_word(self, new_list[1])
+                    value = HBNBCommand.group_word(self, new_list[2])
+                    string_to_destroy = name_class + " " + id_instance + " " + attr + " " + value
+                    HBNBCommand.do_update(self, string_to_destroy)
+                else:
+                    new_dict = line.split('{')
+                    new_dict = "{" + new_dict[1][:-1]
+                    new_dict = eval(new_dict)
+                    objects_dict = models.storage.all()
+                    for key, value in objects_dict.items():
+                        if id_instance == key.split('.')[1]:
+                            for key2, value2 in new_dict.items():
+                                value.__dict__[key2] = value2
+                            models.storage.save()
+                            break
 
     def count_instances(self, line):
         counter = 0
@@ -202,6 +214,14 @@ class HBNBCommand(cmd.Cmd):
             if key.split('.')[0] == line:
                 counter += 1
         print(counter)
+
+    def validate_bracket(self, line):
+        i = 0
+        while len(line) > i:
+            if line[i] == '{':
+                return False
+            i += 1
+        return True
 
 
 if __name__ == '__main__':
