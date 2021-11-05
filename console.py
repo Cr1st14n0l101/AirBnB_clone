@@ -1,15 +1,20 @@
 #!/usr/bin/python3
 """Module for class HBNBCommand and set the console"""
 import cmd
+import models
 from models.base_model import BaseModel
 from models.user import User
-import models
+from models.city import City
+from models.review import Review
+from models.state import State
+from models.place import Place
+from models.amenity import Amenity
+
 
 
 class HBNBCommand(cmd.Cmd):
     """class HBNBCommand for the console"""
     prompt = '(hbnb) '
-
     def do_create(self, line):
         """Create an object"""
         if line == "":
@@ -150,6 +155,53 @@ class HBNBCommand(cmd.Cmd):
                     break
             i += 1
         return result_string
+
+    def default(self, line):
+        HBNBCommand.flag_global = True
+        split_line = line.split('.')
+        name_class = split_line[0]
+        name_method = split_line[1].split('(')[0]
+        if name_method == "all":
+            HBNBCommand.do_all(self, name_class)
+        elif name_method == "count":
+            HBNBCommand.count_instances(self, name_class)
+        elif name_method == "show":
+            id_instance = HBNBCommand.group_word(self, line)
+            string_to_show = ""
+            string_to_show = name_class + " " + id_instance
+            HBNBCommand.do_show(self, string_to_show)
+        elif name_method == "destroy":
+            string_to_destroy = ""
+            id_instance = HBNBCommand.group_word(self, line)
+            string_to_destroy = name_class + " " + id_instance
+            HBNBCommand.do_destroy(self, string_to_destroy)
+        elif name_method == "update":
+            new_list = []
+            string_to_destroy = ""
+            id_instance = ""
+            attr = ""
+            value = ""
+            new_list = line.split(',')
+            id_instance = HBNBCommand.group_word(self, line)
+            if id_instance == "":
+                print("** instance id missing **")
+            elif len(new_list) < 2:
+                print("** attribute name missing **")
+            elif len(new_list) < 3:
+                print("** value missing **")
+            else:
+                attr = HBNBCommand.group_word(self, new_list[1])
+                value = HBNBCommand.group_word(self, new_list[2])
+                string_to_destroy = name_class + " " + id_instance + " " + attr + " " + value
+                HBNBCommand.do_update(self, string_to_destroy)
+
+
+    def count_instances(self, line):
+        counter = 0
+        for key in models.storage.all():
+            if key.split('.')[0] == line:
+                counter += 1
+        print(counter)
 
 
 if __name__ == '__main__':
