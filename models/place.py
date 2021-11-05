@@ -1,10 +1,13 @@
 #!/usr/bin/python3
+"""Module for class Place"""
+
 from models.base_model import BaseModel
 
 
-class Place (BaseModel):
-    city_id = "" #City.id
-    user_id = "" #User.id
+class Place(BaseModel):
+    """Attributes publics Class"""
+    city_id = ""
+    user_id = ""
     name = ""
     description = ""
     number_rooms = 0

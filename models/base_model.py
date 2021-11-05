@@ -5,17 +5,22 @@ import models
 import uuid
 import datetime
 
+
 class BaseModel:
     """
-    class BaseModel that defines all common attributes/methods for other classes
+    class BaseModel that defines all
+    common attributes/methods for other classes
     """
+
     def __init__(self, *args, **kwargs):
         """Contructor"""
         if len(kwargs) > 0:
             for key, value in kwargs.items():
                 if key != '__class__':
-                    if key == 'created_at' or key == 'updated_at':
-                        setattr(self, key, datetime.datetime.fromisoformat(value))
+                    if (key == 'created_at' or
+                            key == 'updated_at'):
+                        setattr(self, key, datetime.
+                                datetime.fromisoformat(value))
                     else:
                         setattr(self, key, value)
         else:
@@ -25,16 +30,23 @@ class BaseModel:
 
     def __str__(self):
         """Return a string that represent the objects class"""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
 
     def save(self):
-        """Updates the public instance attribute updated_at with the current datetime"""
+        """
+        Updates the public instance attribute
+        updated_at with the current datetime
+        """
         models.storage.new(self)
         self.updated_at = datetime.datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """Returns a dictionary containing all keys/values of __dict__ of the instance"""
+        """
+        Returns a dictionary containing all
+        keys/values of __dict__ of the instance
+        """
         new_dict = {}
         for key, value in self.__dict__.items():
             if type(value) is datetime.datetime:
@@ -43,5 +55,3 @@ class BaseModel:
                 new_dict[key] = value
         new_dict['__class__'] = self.__class__.__name__
         return new_dict
-
-
