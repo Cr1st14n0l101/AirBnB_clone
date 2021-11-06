@@ -93,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """
-            Usage: update <class name> <id> <attribute name> "<attribute value>
+            Usage: update <class name> <id> <attribute name> "<attribute value>"
             update attribute instance object
         """
         flag = False
@@ -126,6 +126,10 @@ class HBNBCommand(cmd.Cmd):
                         value_string = HBNBCommand.group_word(self, line)
                         if value_string == "":
                             value_string = split_line[3]
+                        try:
+                            value_string = int(value_string)
+                        except ValueError:
+                            pass
                         setattr(copy_object, split_line[2], value_string)
                         dictionary_isntance[key_dictionary] = copy_object
                         models.storage.save()
@@ -204,13 +208,11 @@ class HBNBCommand(cmd.Cmd):
                     new_dict = line.split('{')
                     new_dict = "{" + new_dict[1][:-1]
                     new_dict = eval(new_dict)
-                    objects_dict = models.storage.all()
-                    for key, value in objects_dict.items():
-                        if id_instance == key.split('.')[1]:
-                            for key2, value2 in new_dict.items():
-                                value.__dict__[key2] = value2
-                            models.storage.save()
-                            break
+                    for key, value in new_dict.items():
+                        new_line = ""
+                        new_line = (name_class + " " + id_instance + " " + 
+                                    str(key) + " " + str(value))
+                        HBNBCommand.do_update(self, str(new_line))
 
     def count_instances(self, line):
         counter = 0
