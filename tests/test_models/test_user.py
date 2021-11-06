@@ -63,7 +63,7 @@ class TestUser(unittest.TestCase):
 
     def test_03_object_dict(self):
         """
-            test for verify the creation of attribute 
+            test for verify the creation of attribute
             for a object in his dictionary representation
         """
         new_obj_dict = {
