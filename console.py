@@ -215,6 +215,7 @@ class HBNBCommand(cmd.Cmd):
                         HBNBCommand.do_update(self, str(new_line))
 
     def count_instances(self, line):
+        """Count the instances"""
         counter = 0
         for key in models.storage.all():
             if key.split('.')[0] == line:
@@ -222,6 +223,7 @@ class HBNBCommand(cmd.Cmd):
         print(counter)
 
     def validate_bracket(self, line):
+        """Verify if exits a bracket"""
         i = 0
         while len(line) > i:
             if line[i] == '{':
