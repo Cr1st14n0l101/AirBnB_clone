@@ -50,5 +50,5 @@ class FileStorage:
                         className = value["__class__"]
                         newInst = eval("{}(**value)".format(className))
                         self.new(newInst)
-        except:
+        except Exception:
             pass
