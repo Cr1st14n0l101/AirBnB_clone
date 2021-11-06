@@ -80,8 +80,10 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(new_obj, "password"))
         self.assertTrue(hasattr(new_obj, "__class__"))
         self.assertEqual(new_obj.id, "1b33cf03-2759-48c2-a2f1-fa99021669e9")
-        self.assertEqual(new_obj.created_at, datetime(2021, 11, 5, 11, 14, 41, 993355))
-        self.assertEqual(new_obj.updated_at, datetime(2021, 11, 5, 11, 14, 41, 993399))
+        self.assertEqual(new_obj.created_at, datetime(
+            2021, 11, 5, 11, 14, 41, 993355))
+        self.assertEqual(new_obj.updated_at, datetime(
+            2021, 11, 5, 11, 14, 41, 993399))
         self.assertEqual(new_obj.first_name, "Pedro")
         self.assertEqual(new_obj.email, "email@gmail.com")
         self.assertEqual(new_obj.password, "1234")
