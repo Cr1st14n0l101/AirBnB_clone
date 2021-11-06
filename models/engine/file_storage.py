@@ -39,16 +39,17 @@ class FileStorage:
         """reload information type .json of the file (__file_path)"""
         filename = str(FileStorage.__file_path) + ".json"
         try:
-            with open(filename, 'r') as f:
-                dict_f = {}
-                read_line = f.read()
-                if read_line != "":
-                    dict_f = json.loads(read_line)
+            if os.path.exists(filename):
+                with open(filename, 'r') as f:
+                    dict_f = {}
+                    read_line = f.read()
+                    if read_line != "":
+                        dict_f = json.loads(read_line)
 
-                for key, value in dict_f.items():
-                    if key not in FileStorage.__objects.keys():
-                        className = value["__class__"]
-                        newInst = eval("{}(**value)".format(className))
-                        self.new(newInst)
+                    for key, value in dict_f.items():
+                        if key not in FileStorage.__objects.keys():
+                            className = value["__class__"]
+                            newInst = eval("{}(**value)".format(className))
+                            self.new(newInst)
         except:
             pass
