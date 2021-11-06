@@ -1,0 +1,5 @@
+# This file lists all individuals having contributed content to the repository.
+# For how it is generated, see `hack/generate-authors.sh`.
+
+Cristian Oliveros <3308@holbertonschool.com>
+Andrés Pirateque <3362@holbertonschool.com>
