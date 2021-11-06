@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Module for class Base"""
-
 import models
 import uuid
 import datetime
@@ -26,7 +25,7 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """Return a string that represent the objects class"""
