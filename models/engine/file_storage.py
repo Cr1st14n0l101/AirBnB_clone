@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Class FileStorage"""
-
 import json
 import os
 from models.base_model import BaseModel
@@ -51,5 +50,5 @@ class FileStorage:
                             className = value["__class__"]
                             newInst = eval("{}(**value)".format(className))
                             self.new(newInst)
-        except:
+        except Exception:
             pass

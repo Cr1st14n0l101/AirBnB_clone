@@ -11,13 +11,14 @@ from models.user import User
 
 class TestUser(unittest.TestCase):
     """All test to class User"""
-
     def test_00_type_instances(self):
+        """test the class type"""
         new_user = User()
         self.assertIsInstance(new_user, User)
         self.assertIsInstance(new_user, BaseModel)
 
     def test_00_type_not_instances(self):
+        """test for the instance datatype"""
         new_user = User()
         self.assertNotIsInstance(new_user, list)
         self.assertNotIsInstance(new_user, dict)
@@ -25,6 +26,7 @@ class TestUser(unittest.TestCase):
         self.assertNotIsInstance(new_user, str)
 
     def test_01_types(self):
+        """test the type for the attributes of a object"""
         new_user = User()
         self.assertEqual(type(new_user.id), str)
         self.assertEqual(type(new_user.created_at), datetime)
@@ -37,6 +39,7 @@ class TestUser(unittest.TestCase):
         self.assertNotEqual(new_dict, new_user.__dict__)
 
     def test_02_has_attributes(self):
+        """test that verify if has a object"""
         new_user = User()
         self.assertTrue(hasattr(new_user, "id"))
         self.assertTrue(hasattr(new_user, "created_at"))
@@ -51,6 +54,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(new_user, "password"))
 
     def test_02_no_has_attributes(self):
+        """test that verify if hasn't a object"""
         new_user2 = User()
         self.assertTrue(hasattr(new_user2, "first_name"))
         self.assertTrue(hasattr(new_user2, "last_name"))
@@ -58,6 +62,10 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(new_user2, "password"))
 
     def test_03_object_dict(self):
+        """
+            test for verify the creation of attribute 
+            for a object in his dictionary representation
+        """
         new_obj_dict = {
             "id": "1b33cf03-2759-48c2-a2f1-fa99021669e9",
             "created_at": "2021-11-05T11:14:41.993355",
@@ -100,6 +108,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(type(new_obj.to_dict()['__class__']), str)
 
     def test_04_save_success(self):
+        """test for verifiy the file saved"""
         new_obj = User()
         date_update = new_obj.updated_at
         new_obj.save()
@@ -107,6 +116,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(type(new_obj.updated_at), datetime)
 
     def test_05_errors(self):
+        """test that verify the errors"""
         new_user = User()
         with self.assertRaises(TypeError):
             list(new_user)

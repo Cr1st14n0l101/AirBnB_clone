@@ -92,8 +92,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_update(self, line):
-        """Usage: update <class name> <id> <attribute name> "<attribute value>
-        update attribute instance object
+        """
+            Usage: update <class name> <id> <attribute name> "<attribute value>
+            update attribute instance object
         """
         flag = False
         key_dictionary = ""

@@ -10,6 +10,7 @@ base_doc = BaseModel.__doc__
 
 class TestBaseModel(unittest.TestCase):
     """Test Case For Base Model"""
+
     @mock.patch('models.storage')  # patch and bring the storage module
     def test_base_case(self, mock_storage):
         """test for the base case in BaseModel Class"""
