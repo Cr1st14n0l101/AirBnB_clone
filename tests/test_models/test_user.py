@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Test for class User"""
-
 from datetime import datetime
 from typing import List
 import unittest
@@ -11,6 +10,7 @@ from models.user import User
 
 class TestUser(unittest.TestCase):
     """All test to class User"""
+
     def test_00_type_instances(self):
         """test the class type"""
         new_user = User()
