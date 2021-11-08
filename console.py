@@ -112,8 +112,8 @@ class HBNBCommand(cmd.Cmd):
                     dictionary_isntance = models.storage.all()
                     for key, value in dictionary_isntance.items():
                         splited = key.split('.')
-                        if (split_line[1] == splited[1]
-                                and splited[0] == split_line[0]):
+                        if (split_line[1] == splited[1] and
+                                splited[0] == split_line[0]):
                             key_dictionary = key
                             copy_object = value
                             flag = True
