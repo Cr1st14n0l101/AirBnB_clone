@@ -13,7 +13,7 @@ from models.amenity import Amenity
 
 class FileStorage:
     """Class FileStorage to store data"""
-    __file_path = "file"
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -28,7 +28,7 @@ class FileStorage:
     def save(self):
         """save information type .json in a file (__file_path)"""
         new_dict = {}
-        filename = str(FileStorage.__file_path) + ".json"
+        filename = str(FileStorage.__file_path)
         for key in FileStorage.__objects:
             new_dict[key] = FileStorage.__objects[key].to_dict()
         with open(filename, 'w') as f:
@@ -36,7 +36,7 @@ class FileStorage:
 
     def reload(self):
         """reload information type .json of the file (__file_path)"""
-        filename = str(FileStorage.__file_path) + ".json"
+        filename = str(FileStorage.__file_path)
         try:
             if os.path.exists(filename):
                 with open(filename, 'r') as f:
