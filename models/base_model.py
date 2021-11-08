@@ -47,11 +47,8 @@ class BaseModel:
         Returns a dictionary containing all
         keys/values of __dict__ of the instance
         """
-        new_dict = {}
-        for key, value in self.__dict__.items():
-            if type(value) is datetime.datetime:
-                new_dict[key] = value.isoformat("T")
-            else:
-                new_dict[key] = value
-        new_dict['__class__'] = self.__class__.__name__
+        new_dict = self.__dict__.copy()
+        new_dict["__class__"] = type(self).__name__
+        new_dict["created_at"] = self.created_at.isoformat()
+        new_dict["updated_at"] = self.updated_at.isoformat()
         return new_dict
