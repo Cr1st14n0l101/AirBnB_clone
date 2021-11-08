@@ -93,7 +93,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """
-            Usage: update <class name> <id> <attribute name> "<attribute value>"
+            Usage: update <class name> <id>
+            <attribute name> "<attribute value>"
             update attribute instance object
         """
         flag = False
@@ -210,8 +211,12 @@ class HBNBCommand(cmd.Cmd):
                     new_dict = eval(new_dict)
                     for key, value in new_dict.items():
                         new_line = ""
-                        new_line = (name_class + " " + id_instance + " " + 
-                                    str(key) + " " + str(value))
+                        new_line = (
+                            name_class + " " +
+                            id_instance + " " +
+                            str(key) + " " +
+                            str(value)
+                            )
                         HBNBCommand.do_update(self, str(new_line))
 
     def count_instances(self, line):
