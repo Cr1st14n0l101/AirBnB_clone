@@ -161,26 +161,6 @@ EOF  all  create  destroy  help  quit  show  update
             expected = "** class doesn't exist **\n"
             self.assertEqual(expected, f.getvalue())
 
-    def test_all_command(self):
-        """
-            test <all>
-            test <all> <className>
-        """
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("all")
-            res = []
-            for key, val in storage.all().items():
-                res.append(str(val))
-            self.assertEqual(eval(f.getvalue()), res)
-        for className in TestConsole.classes:
-            with patch('sys.stdout', new=StringIO()) as f:
-                HBNBCommand().onecmd("all {}".format(className))
-                res = []
-                for key, val in storage.all().items():
-                    if val.__class__.__name__ == className:
-                        res.append(str(val))
-                self.assertEqual(eval(f.getvalue()), res)
-
     def test_update_console_cmd_should_fails_without_clsname(self):
         """
         Tests <update>
