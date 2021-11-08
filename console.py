@@ -74,18 +74,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """Show all objects of the same class"""
-        new_list = []
         split_line = line.split()
-        dictionary_isntance = models.storage.all()
         if len(split_line) == 0:
-            for key, value in dictionary_isntance.items():
-                new_obj = dictionary_isntance[key]
-                new_list.append(str(new_obj))
-            print(new_list)
+            print("** class name missing **")
         elif len(split_line) > 0:
             try:
                 eval("{}()".format(split_line[0]))
                 models.storage.reload()
+                dictionary_isntance = models.storage.all()
+                new_list = []
                 for key, value in dictionary_isntance.items():
                     splited = key.split('.')
                     if splited[0] == split_line[0]:
