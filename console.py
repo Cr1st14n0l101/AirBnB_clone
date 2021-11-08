@@ -196,8 +196,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
             elif len(new_list) < 2:
                 print("** attribute name missing **")
-            elif len(new_list) < 3:
-                print("** value missing **")
             else:
                 if HBNBCommand.validate_bracket(self, line):
                     attr = HBNBCommand.group_word(self, new_list[1])
