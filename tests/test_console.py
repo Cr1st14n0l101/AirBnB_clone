@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-    TestConsole module
-"""
+"""TestConsole module"""
 import unittest
 import sys
 from io import StringIO
@@ -10,11 +8,6 @@ from unittest.mock import patch
 from console import HBNBCommand
 from models import *
 import random
-
-"""
-    The plus symbol + matche one or more occurrences of the pattern left to it
-    The dollar symbol $ is used to check if it ends with a certain character.
-"""
 
 
 class TestConsole(unittest.TestCase):
