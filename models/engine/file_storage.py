@@ -18,25 +18,25 @@ class FileStorage:
 
     def all(self):
         """Return __objects kind dict"""
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """Create Key with class and id and add in __objects"""
         key = str(obj.to_dict()['__class__']) + "." + str(obj.to_dict()['id'])
-        FileStorage.__objects[key] = obj
+        self.__objects[key] = obj
 
     def save(self):
         """save information type .json in a file (__file_path)"""
         new_dict = {}
-        filename = str(FileStorage.__file_path)
-        for key in FileStorage.__objects:
-            new_dict[key] = FileStorage.__objects[key].to_dict()
+        filename = str(self.__file_path)
+        for key in self.__objects:
+            new_dict[key] = self.__objects[key].to_dict()
         with open(filename, 'w') as f:
             json.dump(new_dict, f, indent=4)
 
     def reload(self):
         """reload information type .json of the file (__file_path)"""
-        filename = str(FileStorage.__file_path)
+        filename = str(self.__file_path)
         try:
             if os.path.exists(filename):
                 with open(filename, 'r') as f:
@@ -46,7 +46,7 @@ class FileStorage:
                         dict_f = json.loads(read_line)
 
                     for key, value in dict_f.items():
-                        if key not in FileStorage.__objects.keys():
+                        if key not in self.__objects.keys():
                             className = value["__class__"]
                             newInst = eval("{}(**value)".format(className))
                             self.new(newInst)
