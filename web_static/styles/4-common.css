@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #484848;
+    font-size: 14px;
+    font-family: Circular, "Helvetica Neue", Arial, sans-serif;
+}
+
+p {
+    text-align: center;
+    padding: 8px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto 30px auto;
+}
+
+.locations h3, .amenities h3 {
+    margin-bottom: 0;
+    color: #484848;
+    font-weight: 600;
+    margin-left: 50px;
+}
+
+.locations h4, .amenities h4 {
+    margin-top: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6e6d6d;
+    margin-left: 50px;
+}
+
+h2 {
+    margin: 10px 0px 10px 35px;
+    color: #484848;
+}
+
+ul, li {
+    list-style: none;
+}
