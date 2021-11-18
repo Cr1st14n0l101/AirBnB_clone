@@ -9,6 +9,5 @@ a.logo {
     background: url("../images/logo.png") no-repeat;
     background-position: left;
     display: block;
-    text-indent: -9999px;
     height: 100%;
 }

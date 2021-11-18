@@ -67,6 +67,7 @@ button:hover {
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     display: none;
+    position: relative;
 }
 
 li {
@@ -76,4 +77,3 @@ li {
 .amenities:hover .popover, .locations:hover .popover {
     display: block;
 } 
-
